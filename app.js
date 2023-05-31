@@ -6,6 +6,7 @@ let body = document.querySelector('body');
 let total = document.querySelector('.total');
 let quantity = document.querySelector('.quantity');
 
+
 openShopping.addEventListener('click', ()=>{
     body.classList.add('active');
 })
@@ -159,4 +160,16 @@ function changeQuantity(key, quantity){
         listCards[key].price = quantity * products[key].price;
     }
     reloadCard();
+}
+
+function InsertData() {
+    set(ref(db, "ORDER/" + ListCard.value), {
+        Order: ListCard.value,
+    })
+        .then(() => {
+            alert("WE GOT YOUR ORDER!");
+        })
+        .catch((error) => {
+            alert("UNSUCCESSFUL, ERROR" + error);
+        });
 }
